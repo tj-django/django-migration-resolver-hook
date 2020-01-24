@@ -32,9 +32,9 @@ setup(
 
 ### Usage
 
-Scenario
+##### Scenario
 
-Remote
+###### Remote
 ```text
 |--- migrations
        |---- ...
@@ -45,23 +45,23 @@ Remote
 
 ```
 
-Local repo
+###### Local repo
 
 ```text
 |--- migrations
        |---- ...
        |---- 0007_auto_20200112_2328.py  # Shared between remote and local repo
-       |---- 0008_auto_20200114_5438.py  # Only exists on locally which raise duplicate migration nodes errors.
+       |---- 0008_auto_20200114_5438.py  # Only exists locally which raises duplicate migration nodes errors.
 ```
 
-Since this is now out of sync with the remote branch to sync changes reseeding the migration run:
+###### Since this is now out of sync with the remote branch to sync changes reseeding the migration run:
 
 ```bash
 $ migration_resolver --app-name my_app --last 0010_auto_20200115_1632 --conflict 
 0008_auto_20200114_5438 --commit --verbose
 ```
 
-Output
+###### Output
 
 ```text
 Fixing migrations...
