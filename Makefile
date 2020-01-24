@@ -65,7 +65,7 @@ tag-build:
 release-to-pypi: increase-version tag-build  ## Release project to pypi
 	@$(PYTHON_PIP) install -U twine
 	@$(PYTHON) setup.py sdist bdist_wheel
-	@twine upload dist/*
+	@twine upload dist/*  --verbose
 
 
 # ----------------------------------------------------------
