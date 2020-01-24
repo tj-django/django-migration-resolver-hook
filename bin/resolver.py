@@ -22,7 +22,7 @@ def run_command(command):
     return rc
 
 class Resolver(object):
-    def __init__(self, app_name, last, conflict, auto_detect=False, commit=False):
+    def __init__(self, app_name, last, conflict, auto_detect=False, commit=False, verbose=False):
         self.app_name = app_name
         self.app_module = import_module(app_name)
         self.migration_module = import_module('%s.%s' % (app_name, 'migrations'))
@@ -30,6 +30,7 @@ class Resolver(object):
         self.conflict = conflict  # 0537_auto_20200115_1632.py
         self.auto_detect = auto_detect
         self.commit = commit
+        self.verbose = verbose
 
         BASE_DIR  = os.path.dirname(os.path.dirname(inspect.getfile(self.app_module)))
         MIGRATION_DIR  = os.path.dirname(inspect.getfile(self.migration_module))
@@ -78,10 +79,16 @@ class Resolver(object):
             raise NotImplementedError
 
         if self.conflict_path.is_file():
+            confilt_file = os.path.basename(str(self.conflict_path))
+            new_resolved_file = os.path.basename(str(self.conflict_new_path))
             pwd = os.getcwd()
             os.chdir(self.base_path)
             print('Fixing migrations...')
 
+            if self.verbose:
+                print(
+                    'Updating the conflicting migration file {}'.format(confilt_file)
+                )
             # Rename the file
             output = re.sub(
                 self.replace_regex,
@@ -91,9 +98,18 @@ class Resolver(object):
             # Write to the conflict file.
             self.conflict_path.write_text(output)
 
+            if self.verbose:
+                print('Succefully updated: {}.'.format(confilt_file))
+                print(
+                    'Renaming the migration file from {} to {}'
+                    .format(confilt_file, new_resolved_file)
+                )
+
             # Calculate the new name
             self.conflict_path.rename(self.conflict_new_path)
 
+            if self.verbose:
+                print('Successfully renamed the migration file.')
 
             if self.commit:
                 msg = (
@@ -102,7 +118,12 @@ class Resolver(object):
                         os.path.basename(str(self.conflict_new_path)),
                     )
                 )
-                run_command('git add .')
+                migration_abs_path = str(self.migration_path).replace('{}/'.format(str(self.base_path)), '')
+                cf_abs = os.path.join(migration_abs_path, new_resolved_file)
+                ncf_abs = os.path.join(migration_abs_path, confilt_file)
+
+                run_command('git add {}'.format(cf_abs))
+                run_command('git add {}'.format(ncf_abs))
                 run_command('git commit -m "{}"'.format(msg))
             os.chdir(pwd)
 
@@ -111,6 +132,11 @@ def parse_args(args=None):
     parser.add_argument(
         '--auto-detect',
         help='Auto-detect and fix migration errors. (Not supported)',
+        action='store_true'
+    )
+    parser.add_argument(
+        '--verbose',
+        help='Verbose output',
         action='store_true'
     )
     parser.add_argument(
@@ -150,6 +176,7 @@ def main(args=None):
         last=args.last,
         conflict=args.conflict,
         commit=args.commit,
+        verbose=args.verbose,
     )
     resolver.fix()
 
