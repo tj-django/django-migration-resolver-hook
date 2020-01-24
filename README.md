@@ -84,7 +84,7 @@ $ migration_resolver --help
 ```
 usage: migration_resolver [-h] [--auto-detect] [--verbose] --app-name APP_NAME --last LAST --conflict CONFLICT [--commit]
 
-Fix vcs errors with duplicate migration nodes.
+Resolve duplicate migration nodes.
 
 optional arguments:
   -h, --help           show this help message and exit
