@@ -1,5 +1,5 @@
 # django-migration-resolver-hook
-Migration resolver for django, ensuring that the migration nodes always stays in sync regardless of merge changes.
+Migration resolver for django, ensures that the migration nodes always stays in sync regardless of remote changes.
 
 
 ### Installation
@@ -32,9 +32,9 @@ setup(
 
 ### Usage
 
-Scenario
+##### Scenario
 
-Remote
+###### Remote
 ```text
 |--- migrations
        |---- ...
@@ -45,23 +45,22 @@ Remote
 
 ```
 
-Local repo
+###### Local repo
 
 ```text
 |--- migrations
        |---- ...
        |---- 0007_auto_20200112_2328.py  # Shared between remote and local repo
-       |---- 0008_auto_20200114_5438.py  # Only exists on locally which raise duplicate migration nodes errors.
+       |---- 0008_auto_20200114_5438.py  # Only exists locally which raises duplicate migration nodes errors.
 ```
 
-Since this is now out of sync with the remote branch to sync changes reseeding the migration run:
+###### Since this is now out of sync with the remote branch to sync changes reseeding the migration run:
 
 ```bash
-$ migration_resolver --app-name my_app --last 0010_auto_20200115_1632 --conflict 
-0008_auto_20200114_5438 --commit --verbose
+$ migration_resolver --app-name my_app --last 0010_auto_20200115_1632 --conflict 0008_auto_20200114_5438 --commit --verbose
 ```
 
-Output
+###### Output
 
 ```text
 Fixing migrations...
@@ -103,11 +102,9 @@ Using vsc (git/mercurial) when the remote has a migration files that conflict wi
 migrations you have locally.
 
 
-Version 0:
-Manually specify the last migration module to seed the conflicting migration.
-
-```
-$ migration_resolver --app-name content_library --last 0540_auto_20200115_1632 --conflict  
-0538_auto_20200115_2208
-```
+TODO:
+- Auto detect and resolve errors with migration nodes.
+- Add support for database unapply migration for case of applied migrations.
+- Add support to rollback any changes if there are failures in the chain of operations.
+- VCS support right now only git is supported (extend to mercurial).
 
