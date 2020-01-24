@@ -1,4 +1,4 @@
-# django-migration-resolver-hook
+# [django-migration-resolver-hook](https://pypi.org/project/django-migration-resolver-hook/)
 Migration resolver for django, ensures that the migration nodes always stays in sync regardless of remote changes.
 
 
