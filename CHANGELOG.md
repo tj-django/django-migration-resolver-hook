@@ -18,8 +18,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Misc
 - "2020-01-23 22:56 - Increased django-clone version: VERSION = (0, 0, 1) to VERSION = (0, 0, 2)" ([61dbb35](https://github.com/jackton1/django-migration-resolver-hook/commit/61dbb3584bd5e047560593b4270004d896321b15)).
+- "2020-01-23 23:00 - Increased django-clone version: VERSION = (0, 0, 2) to VERSION = (0, 0, 3)" ([b283e89](https://github.com/jackton1/django-migration-resolver-hook/commit/b283e89132035842ba7e6bdc9fbcb92014ee3fe2)).
+- Create LICENSE ([99fea4e](https://github.com/jackton1/django-migration-resolver-hook/commit/99fea4eef04075cec7916ffc086b55f133fab55a)).
 - Create resolver.py ([759c11b](https://github.com/jackton1/django-migration-resolver-hook/commit/759c11be244e087f346bbd43b90ed5da2e114bde)).
 - Initial commit ([e6d3846](https://github.com/jackton1/django-migration-resolver-hook/commit/e6d3846d181904cdf6dc8520d507c16d1599a338)).
+- Update README.md ([9d5d5fd](https://github.com/jackton1/django-migration-resolver-hook/commit/9d5d5fd4118a2eab0b4cbc4a0cabf87a3d183605)).
+- Update README.md ([151f50a](https://github.com/jackton1/django-migration-resolver-hook/commit/151f50ad1a09e4c8371058ec38599fee827960b5)).
+- Update README.md ([1c819b9](https://github.com/jackton1/django-migration-resolver-hook/commit/1c819b9b7ad53bf9586894217a4052a8eadcdb32)).
+- Update README.md ([d89e0a0](https://github.com/jackton1/django-migration-resolver-hook/commit/d89e0a0a0714bb5306679f02d9ae74ece6ba8d8f)).
+- Updated CHANGELOG.md. ([e5276bb](https://github.com/jackton1/django-migration-resolver-hook/commit/e5276bb1a2c0d8e66a59e2ac6f55dc0c355d502a)).
+- Updated release script. ([1098c9b](https://github.com/jackton1/django-migration-resolver-hook/commit/1098c9b1c520d8d009cbfc555625632f49bb202f)).
 - Updated script. ([eb9036e](https://github.com/jackton1/django-migration-resolver-hook/commit/eb9036e6d8f69afafeaeb239aaa13aae3b0876a9)).
 
 
