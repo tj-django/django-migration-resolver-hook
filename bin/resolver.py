@@ -21,19 +21,22 @@ def run_command(command):
     rc = process.poll()
     return rc
 
+
 class Resolver(object):
     def __init__(self, app_name, last, conflict, auto_detect=False, commit=False, verbose=False):
         self.app_name = app_name
         self.app_module = import_module(app_name)
-        self.migration_module = import_module('%s.%s' % (app_name, 'migrations'))
-        self.last = last # 0539_auto_20200117_2109.py
+        self.migration_module = import_module(
+            '%s.%s' % (app_name, 'migrations'))
+        self.last = last  # 0539_auto_20200117_2109.py
         self.conflict = conflict  # 0537_auto_20200115_1632.py
         self.auto_detect = auto_detect
         self.commit = commit
         self.verbose = verbose
 
-        BASE_DIR  = os.path.dirname(os.path.dirname(inspect.getfile(self.app_module)))
-        MIGRATION_DIR  = os.path.dirname(inspect.getfile(self.migration_module))
+        BASE_DIR = os.path.dirname(os.path.dirname(
+            inspect.getfile(self.app_module)))
+        MIGRATION_DIR = os.path.dirname(inspect.getfile(self.migration_module))
 
         self.base_path = pathlib.Path(os.path.join(BASE_DIR))
         self.migration_path = pathlib.Path(os.path.join(MIGRATION_DIR))
@@ -61,7 +64,8 @@ class Resolver(object):
             self.migration_path.glob('*{last}*'.format(last=self.last))
         )[0]
         self.conflict_path = list(
-            self.migration_path.glob('*{conflict}*'.format(conflict=self.conflict))
+            self.migration_path.glob(
+                '*{conflict}*'.format(conflict=self.conflict))
         )[0]
 
         # Calculate the new name
@@ -71,8 +75,8 @@ class Resolver(object):
 
         new_conflict_name = '_'.join(conflict_parts)
 
-        self.conflict_new_path = self.conflict_path.with_name(new_conflict_name)
-
+        self.conflict_new_path = self.conflict_path.with_name(
+            new_conflict_name)
 
     def fix(self):
         if self.auto_detect:
@@ -87,7 +91,8 @@ class Resolver(object):
 
             if self.verbose:
                 print(
-                    'Updating the conflicting migration file {}'.format(confilt_file)
+                    'Updating the conflicting migration file {}'.format(
+                        confilt_file)
                 )
             # Rename the file
             output = re.sub(
@@ -118,7 +123,8 @@ class Resolver(object):
                         os.path.basename(str(self.conflict_new_path)),
                     )
                 )
-                migration_abs_path = str(self.migration_path).replace('{}/'.format(str(self.base_path)), '')
+                migration_abs_path = str(self.migration_path).replace(
+                    '{}/'.format(str(self.base_path)), '')
                 cf_abs = os.path.join(migration_abs_path, new_resolved_file)
                 ncf_abs = os.path.join(migration_abs_path, confilt_file)
 
@@ -127,8 +133,10 @@ class Resolver(object):
                 run_command('git commit -m "{}"'.format(msg))
             os.chdir(pwd)
 
+
 def parse_args(args=None):
-    parser = argparse.ArgumentParser(description='Fix vcs errors with duplicate migration nodes.')
+    parser = argparse.ArgumentParser(
+        description='Fix vcs errors with duplicate migration nodes.')
     parser.add_argument(
         '--auto-detect',
         help='Auto-detect and fix migration errors. (Not supported)',
@@ -155,7 +163,7 @@ def parse_args(args=None):
     parser.add_argument(
         '--conflict',
         type=str,
-        required=True, # TODO: Required for now.
+        required=True,  # TODO: Required for now.
         help='The glob/full name of the final migration file with the conflict.'
     )
 
@@ -180,7 +188,6 @@ def main(args=None):
     )
     resolver.fix()
 
+
 if __name__ == '__main__':
     main()
-
-
