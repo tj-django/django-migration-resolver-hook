@@ -57,8 +57,7 @@ setup(
 ###### Since this is now out of sync with the remote branch to sync changes reseeding the migration run:
 
 ```bash
-$ migration_resolver --app-name my_app --last 0010_auto_20200115_1632 --conflict 
-0008_auto_20200114_5438 --commit --verbose
+$ migration_resolver --app-name my_app --last 0010_auto_20200115_1632 --conflict 0008_auto_20200114_5438 --commit --verbose
 ```
 
 ###### Output
