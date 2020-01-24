@@ -82,19 +82,18 @@ $ migration_resolver --help
 ```
 
 ```
-Usage: migration_resolver [-h] [--auto-detect AUTO_DETECT] --app-name APP_NAME
-                          --last LAST --conflict CONFLICT
+usage: migration_resolver [-h] [--auto-detect] [--verbose] --app-name APP_NAME --last LAST --conflict CONFLICT [--commit]
 
 Fix vcs errors with duplicate migration nodes.
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --auto-detect AUTO_DETECT
-                        Auto-detect and fix migration errors. (Not supported)
-  --app-name APP_NAME   App Name
-  --last LAST           The glob/full name of the final migration file.
-  --conflict CONFLICT   The glob/full name of the final migration file with
-                        the conflict.
+  -h, --help           show this help message and exit
+  --auto-detect        Auto-detect and fix migration errors. (Not supported)
+  --verbose            Verbose output
+  --app-name APP_NAME  App Name
+  --last LAST          The glob/full name of the final migration file.
+  --conflict CONFLICT  The glob/full name of the final migration file with the conflict.
+  --commit             Commit the changes made.
 ```
 
 
