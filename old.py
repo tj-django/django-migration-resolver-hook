@@ -26,7 +26,7 @@ def forwards_func(apps, schema_editor):
         # Reapply the migration
         executor = MigrationExecutor(connection)
         executor.loader.build_graph()  # reload.
-        executor.migrate([('content_library', '222')])
+        executor.migrate([('app', '222')])
 
 
 class Migration(migrations.Migration):
