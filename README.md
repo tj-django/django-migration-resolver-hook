@@ -104,6 +104,6 @@ migrations you have locally.
 TODO:
 - Auto detect and resolve errors with migration nodes.
 - Add support for database unapply migration for case of applied migrations.
-- Add support to rollback any changes if there are failures in the chain of operations.
+- Add support to rollback any changes if there are failures in the chain of operation.
 - VCS support right now only git is supported (extend to mercurial).
 
