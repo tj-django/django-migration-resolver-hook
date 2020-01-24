@@ -102,11 +102,9 @@ Using vsc (git/mercurial) when the remote has a migration files that conflict wi
 migrations you have locally.
 
 
-Version 0:
-Manually specify the last migration module to seed the conflicting migration.
-
-```
-$ migration_resolver --app-name content_library --last 0540_auto_20200115_1632 --conflict  
-0538_auto_20200115_2208
-```
+TODO:
+- Auto detect and resolve errors with migration nodes.
+- Add support for database unapply migration for case of applied migrations.
+- Add support to rollback any changes if there are failures in the chain of operations.
+- VCS support right now only git is supported (extend to mercurial).
 
