@@ -5,13 +5,13 @@ Django Migration resolver ensures that the migration nodes always stays ordered 
 ### Installation
 
 ```bash
-$ pip install django-migration-resolver-hook==0.0.1
+$ pip install django-migration-resolver-hook==0.0.5
 ```
 
 ##### Poetry
 
 ```bash
-poetry add -D django-migration-resolver-hook
+poetry add -D django-migration-resolver-hook==0.0.5
 ```
 
 
@@ -22,7 +22,7 @@ setup(
     extras_require={
         'development': [
             ...
-            'django-migration-resolver-hook==0.0.1',
+            'django-migration-resolver-hook==0.0.5',
             ...
         ]
     },
