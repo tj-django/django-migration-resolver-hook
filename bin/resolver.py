@@ -4,10 +4,22 @@ import inspect
 import os
 import pathlib
 import re
+import shlex
 import subprocess
 from importlib import import_module
 from itertools import count
 
+
+def run_command(command):
+    process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
+    while True:
+        output = process.stdout.readline()
+        if output.decode('utf8') == '' and not process.poll():
+            break
+        if output:
+            print(output.decode('utf8').strip())
+    rc = process.poll()
+    return rc
 
 class Resolver(object):
     def __init__(self, app_name, last, conflict, auto_detect=False, commit=False):
@@ -90,20 +102,8 @@ class Resolver(object):
                         os.path.basename(str(self.conflict_new_path)),
                     )
                 )
-                subprocess.check_output(
-                    [
-                        'git add .'
-                    ],
-                    stderr=subprocess.STDOUT,
-                    shell=True,
-                )
-                subprocess.check_output(
-                    [
-                        'git commit -m "{}"'.format(msg),
-                    ],
-                    stderr=subprocess.STDOUT,
-                    shell=True,
-                )
+                run_command('git add .')
+                run_command('git commit -m "{}"'.format(msg))
             os.chdir(pwd)
 
 def parse_args(args=None):
