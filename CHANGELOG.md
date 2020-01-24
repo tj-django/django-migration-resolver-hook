@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.0.5](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.0.5) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.0.4...v0.0.5))
+
+### Misc
+- "2020-01-23 23:07 - Increased django-clone version: VERSION = (0, 0, 4) to VERSION = (0, 0, 5)" ([c5e96ba](https://github.com/jackton1/django-migration-resolver-hook/commit/c5e96ba1fa7a4d3cb403e67e08346e2ae7b89eb7)).
+- Updated CHANGELOG.md. ([2cb3acb](https://github.com/jackton1/django-migration-resolver-hook/commit/2cb3acb00ea6e00b38dc042a8bbaf4e24289f2cb)).
+- Updated README.md. ([59e8017](https://github.com/jackton1/django-migration-resolver-hook/commit/59e801725f710f58fc55cd1ea2ea1e54d5aad89b)).
+- Updated the help. ([30795f5](https://github.com/jackton1/django-migration-resolver-hook/commit/30795f59ce77968dba9edfcea20b0f2efba16c6e)).
+
+
 ## [v0.0.4](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.0.4) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.0.3...v0.0.4)) - 2020-01-24
 
 ### Misc
