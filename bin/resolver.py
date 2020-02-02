@@ -6,31 +6,38 @@ import pathlib
 import re
 import shlex
 import subprocess
+import sys
 from importlib import import_module
 from itertools import count
 
 
 def run_command(command):
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
-    while True:
-        output = process.stdout.readline()
-        if output.decode('utf8') == '' and not process.poll():
-            break
-        if output:
-            print(output.decode('utf8').strip())
+
+    try:
+        outs, errs = process.communicate(timeout=30)
+        if outs:
+            print(outs.decode('utf8').strip(), file=sys.stdout)
+        if errs:
+            print(errs, file=sys.stdout)
+    except subprocess.TimeoutExpired:
+        process.kill()
+        outs, errs = process.communicate()
+        if outs:
+            print(outs.decode('utf8').strip(), file=sys.stdout)
+        if errs:
+            print(errs, file=sys.stdout)
     rc = process.poll()
     return rc
 
 
 class Resolver(object):
-    def __init__(self, app_name, last, conflict, auto_detect=False, commit=False, verbose=False):
+    def __init__(self, app_name, last, conflict, commit=False, verbose=False):
         self.app_name = app_name
         self.app_module = import_module(app_name)
-        self.migration_module = import_module(
-            '%s.%s' % (app_name, 'migrations'))
+        self.migration_module = import_module('%s.%s' % (app_name, 'migrations'))
         self.last = last  # 0539_auto_20200117_2109.py
         self.conflict = conflict  # 0537_auto_20200115_1632.py
-        self.auto_detect = auto_detect
         self.commit = commit
         self.verbose = verbose
 
@@ -41,13 +48,9 @@ class Resolver(object):
         self.base_path = pathlib.Path(os.path.join(BASE_DIR))
         self.migration_path = pathlib.Path(os.path.join(MIGRATION_DIR))
         self.replace_regex = re.compile(
-            """\('{app_name}',\s'(?P<conflict_migration>.*)'\)""".format(app_name=app_name),
+            """\('{app_name}',\s'(?P<conflict_migration>.*)'\)"""
+            .format(app_name=self.app_name),
             re.I | re.M,
-        )
-
-        self.replacement = (
-            "('{app_name}', '{prev_migration}')"
-            .format(app_name=app_name, prev_migration=last)
         )
 
         seed = self.last.split('_')[0]
@@ -68,6 +71,14 @@ class Resolver(object):
                 '*{conflict}*'.format(conflict=self.conflict))
         )[0]
 
+        self.replacement = (
+            "('{app_name}', '{prev_migration}')"
+            .format(
+                app_name=self.app_name,
+                prev_migration=self.last_path.name.strip(self.last_path.suffix),
+            )
+        )
+
         # Calculate the new name
         conflict_parts = self.conflict_path.name.split('_')
 
@@ -75,13 +86,9 @@ class Resolver(object):
 
         new_conflict_name = '_'.join(conflict_parts)
 
-        self.conflict_new_path = self.conflict_path.with_name(
-            new_conflict_name)
+        self.conflict_new_path = self.conflict_path.with_name(new_conflict_name)
 
     def fix(self):
-        if self.auto_detect:
-            raise NotImplementedError
-
         if self.conflict_path.is_file():
             confilt_file = os.path.basename(str(self.conflict_path))
             new_resolved_file = os.path.basename(str(self.conflict_new_path))
@@ -136,11 +143,7 @@ class Resolver(object):
 
 def parse_args(args=None):
     parser = argparse.ArgumentParser(
-        description='Fix vcs errors with duplicate migration nodes.')
-    parser.add_argument(
-        '--auto-detect',
-        help='Auto-detect and fix migration errors. (Not supported)',
-        action='store_true'
+        description='Fix vcs errors with duplicate migration nodes.'
     )
     parser.add_argument(
         '--verbose',
@@ -156,14 +159,14 @@ def parse_args(args=None):
     parser.add_argument(
         '--last',
         type=str,
-        required=True,  # TODO: Required for now.
+        required=True,
         help='The glob/full name of the final migration file.'
     )
 
     parser.add_argument(
         '--conflict',
         type=str,
-        required=True,  # TODO: Required for now.
+        required=True,
         help='The glob/full name of the final migration file with the conflict.'
     )
 
@@ -180,7 +183,6 @@ def main(args=None):
     args = parse_args(args=args)
     resolver = Resolver(
         app_name=args.app_name,
-        auto_detect=args.auto_detect,
         last=args.last,
         conflict=args.conflict,
         commit=args.commit,
