@@ -41,14 +41,13 @@ class Resolver(object):
         self.commit = commit
         self.verbose = verbose
 
-        BASE_DIR = os.path.dirname(os.path.dirname(
-            inspect.getfile(self.app_module)))
-        MIGRATION_DIR = os.path.dirname(inspect.getfile(self.migration_module))
+        base_dir = os.path.dirname(os.path.dirname(inspect.getfile(self.app_module)))
+        migration_dir = os.path.dirname(inspect.getfile(self.migration_module))
 
-        self.base_path = pathlib.Path(os.path.join(BASE_DIR))
-        self.migration_path = pathlib.Path(os.path.join(MIGRATION_DIR))
+        self.base_path = pathlib.Path(os.path.join(base_dir))
+        self.migration_path = pathlib.Path(os.path.join(migration_dir))
         self.replace_regex = re.compile(
-            """\('{app_name}',\s'(?P<conflict_migration>.*)'\)"""
+            "\('{app_name}',\s'(?P<conflict_migration>.*)'\)"
             .format(app_name=self.app_name),
             re.I | re.M,
         )
@@ -111,7 +110,7 @@ class Resolver(object):
             self.conflict_path.write_text(output)
 
             if self.verbose:
-                print('Succefully updated: {}.'.format(confilt_file))
+                print('Successfully updated: {}.'.format(confilt_file))
                 print(
                     'Renaming the migration file from {} to {}'
                     .format(confilt_file, new_resolved_file)
