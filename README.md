@@ -19,28 +19,13 @@ Django Migration resolver ensures that migration files always stays ordered rega
 ## Installation
 
 ```bash
-$ pip install django-migration-resolver-hook==0.0.5
+$ pip install django-migration-resolver-hook
 ```
 
 ##### Poetry
 
 ```bash
-poetry add -D django-migration-resolver-hook==0.0.5
-```
-
-
-##### Using extras 
-```python
-setup(
-    ...
-    extras_require={
-        'development': [
-            ...
-            'django-migration-resolver-hook==0.0.5',
-            ...
-        ]
-    },
-)
+poetry add -D django-migration-resolver-hook
 ```
 
 
