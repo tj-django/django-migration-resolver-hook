@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/django-migration-resolver-hook.svg)](https://badge.fury.io/py/django-migration-resolver-hook)
+
 # [django-migration-resolver-hook](https://pypi.org/project/django-migration-resolver-hook/)
 
 Django Migration resolver ensures that migration files always stays ordered regardless of remote changes.
