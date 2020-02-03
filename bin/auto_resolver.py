@@ -184,14 +184,13 @@ class AutoResolver(object):
                     self.exclude.append(excluded_path.stem)
                     self.excluded_paths.append(excluded_path)
 
-    def make_graph(self):
+    def make_migration_node(self):
         migration_paths = sorted(
             self.migration_path.glob('*.py'),
             key=lambda p: p.name.split('_')[0],
         )
         migration_node = MigrationNode()
         current_node = migration_node
-        mid = None
 
         for index, path in enumerate(migration_paths):
             if path in self.excluded_paths:
@@ -212,23 +211,8 @@ class AutoResolver(object):
 
         return migration_node
 
-    def find_duplicates(self, migration_node, node):
-        first = 0
-        last = len(migration_node) - 1
-        index = -1
-        while (first <= last) and (index == -1):
-            mid = (first + last) // 2
-            if migration_node[mid] == node:
-                index = mid
-            else:
-                if node < migration_node[mid]:
-                    last = mid - 1
-                else:
-                    first = mid + 1
-        return index
-
     def fix(self):
-        migration_node = self.make_graph()
+        migration_node = self.make_migration_node()
 
         for node in migration_node.conflicts():
             if self.strategy == 'reseed':
