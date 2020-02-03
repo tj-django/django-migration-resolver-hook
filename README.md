@@ -1,17 +1,17 @@
 # [django-migration-resolver-hook](https://pypi.org/project/django-migration-resolver-hook/)
-Migration resolver for django, ensures that the migration nodes always stays in sync regardless of remote changes.
+Django Migration resolver ensures that nodes always stays ordered regardless of remote changes.
 
 
 ### Installation
 
 ```bash
-$ pip install django-migration-resolver-hook==0.0.1
+$ pip install django-migration-resolver-hook==0.0.5
 ```
 
 ##### Poetry
 
 ```bash
-poetry add -D django-migration-resolver-hook
+poetry add -D django-migration-resolver-hook==0.0.5
 ```
 
 
@@ -22,7 +22,7 @@ setup(
     extras_require={
         'development': [
             ...
-            'django-migration-resolver-hook==0.0.1',
+            'django-migration-resolver-hook==0.0.5',
             ...
         ]
     },
@@ -104,6 +104,6 @@ migrations you have locally.
 TODO:
 - Auto detect and resolve errors with migration nodes.
 - Add support for database unapply migration for case of applied migrations.
-- Add support to rollback any changes if there are failures in the chain of operations.
+- Add support to rollback any changes if there are failures in the chain of operation.
 - VCS support right now only git is supported (extend to mercurial).
 
