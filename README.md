@@ -7,11 +7,11 @@ Django Migration resolver ensures that nodes always stays ordered regardless of 
 1. [Installation](#installation)
 2. [Usage](#usage)
     
-    i. [Scenario]()
+    i. [Scenario](#scenario)
         
-    ii. [Auto migration resolver]()
+    ii. [Auto migration resolver](#auto-migration-resolver)
         
-    iii. [Static migration resolver]()
+    iii. [Static migration resolver](#static-migration-resolver)
 
 
 
