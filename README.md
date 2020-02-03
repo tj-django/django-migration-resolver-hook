@@ -68,12 +68,12 @@ setup(
 ```
 
 > Since this is now out of sync with the remote branch to sync changes:
-
+-----------------------------
 
 ### Auto migration resolver
 -----------------------------
 #### CLI command: `auto_migration_resolver`
-------------------------------------------
+
 Auto detect and fix migration files by providing the following:
 - `--app-name`: The app_name of the Django application.
 - `--strategy`: The strategy used to resolve migration errors (options: "reseed"/"inline"). (Defaults to: "reseed")
@@ -96,9 +96,7 @@ $ auto_migration_resolver --app-name my_app --commit --verbose
 
 ### Static migration resolver
 -------------------------------
-
 #### CLI command: `migration_resolver`
---------------------------------------
 
 Fix migrations by providing the following: 
 - `--app-name`: The app_name of the Django application.
