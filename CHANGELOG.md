@@ -4,6 +4,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.1.0](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.1.0) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.0.5...v0.1.0))
+
+### Added
+- Added support for auto_migration and fixed timeout. ([f22d637](https://github.com/jackton1/django-migration-resolver-hook/commit/f22d637cd7611558335995a8648d24eb95d09906)).
+
+### Fixed
+- Fixed lint errors. ([69d33bb](https://github.com/jackton1/django-migration-resolver-hook/commit/69d33bbb049745d6bcab729ab857ed44de482eae)).
+- Fixed migration commit msg. ([9ae6c59](https://github.com/jackton1/django-migration-resolver-hook/commit/9ae6c59a2f545adb0764cc7f33de0c9fae3cc7c4)).
+
+### Misc
+- "2020-02-03 13:22 - Increased django-migration-resolver-hook version: VERSION = (0, 0, 5) to VERSION = (0, 1, 0)" ([2eaecb4](https://github.com/jackton1/django-migration-resolver-hook/commit/2eaecb4b93f46a5cfbf330142c2a33df27fc3ffd)).
+- Update old.py ([9b0fed6](https://github.com/jackton1/django-migration-resolver-hook/commit/9b0fed640e677495e75d1843c6a27ce0c5b4891e)).
+- Update old.py ([ccf2e4a](https://github.com/jackton1/django-migration-resolver-hook/commit/ccf2e4afc89031a9fa82ed4b62f0db6fde817116)).
+- Update README.md ([f5e7597](https://github.com/jackton1/django-migration-resolver-hook/commit/f5e7597c6673b4d5aae017ce7d28488144f3b38f)).
+- Update README.md ([8be08f0](https://github.com/jackton1/django-migration-resolver-hook/commit/8be08f0d37503e93a26d1f314f10d9358c10fb5e)).
+- Update README.md ([10b276d](https://github.com/jackton1/django-migration-resolver-hook/commit/10b276d124903ae7a868e2c6998f7c17e8f03ee8)).
+- Update README.md ([54b59c0](https://github.com/jackton1/django-migration-resolver-hook/commit/54b59c0eae7ba6de0cb6c7cab85ce8a9189c825e)).
+- Update README.md ([8f28e62](https://github.com/jackton1/django-migration-resolver-hook/commit/8f28e62708d9887267f39766e407f9094a61da97)).
+- Update README.md ([bde9f2b](https://github.com/jackton1/django-migration-resolver-hook/commit/bde9f2b14ec1951ceaa146169aaca1bd594e90b1)).
+- Update README.md ([74d0552](https://github.com/jackton1/django-migration-resolver-hook/commit/74d0552884915d0160214cec30afd04e4b0bd650)).
+- Update README.md ([e25039a](https://github.com/jackton1/django-migration-resolver-hook/commit/e25039a7fc65a8191c61d3025244871389ae10e6)).
+- Update README.md ([62ef052](https://github.com/jackton1/django-migration-resolver-hook/commit/62ef052b073d33e7c8e0e8165c71fada1cb85858)).
+- Update README.md ([668b69d](https://github.com/jackton1/django-migration-resolver-hook/commit/668b69d4ff29f5cd0528e0de8a2ff821798a47b2)).
+- Update README.md ([3171d67](https://github.com/jackton1/django-migration-resolver-hook/commit/3171d677bffbfa5b0b56eaef946ac60512063e1e)).
+- Update README.md ([05a1638](https://github.com/jackton1/django-migration-resolver-hook/commit/05a1638b7f5ea28d7932c4e6b0ce2bf22c1b8335)).
+- Update README.md ([2a436c5](https://github.com/jackton1/django-migration-resolver-hook/commit/2a436c5de4ef3cc864f85bec7b49fe0bbc3eed4a)).
+- Update requirements.txt ([34744f0](https://github.com/jackton1/django-migration-resolver-hook/commit/34744f011c3dab1275b898f93af5e23885c8b386)).
+- Update resolver.py ([aed8ac1](https://github.com/jackton1/django-migration-resolver-hook/commit/aed8ac1dbe2586b1fa381eac8162bd7b7779d654)).
+- Updated auto migration. ([4771591](https://github.com/jackton1/django-migration-resolver-hook/commit/4771591ebb804ffc3adaa23b52aeb785a60b1471)).
+- Updated CHANGELOG.md. ([00bbd10](https://github.com/jackton1/django-migration-resolver-hook/commit/00bbd1058c47558c63efeb1cb08f94167defe61f)).
+- Updated function name and removed unused code. ([d8f628a](https://github.com/jackton1/django-migration-resolver-hook/commit/d8f628aa4876e12a50d268873f25dc31c43da6dd)).
+- Updated README.md ([6cb6c40](https://github.com/jackton1/django-migration-resolver-hook/commit/6cb6c4079a43a78b35be9905254b45fd7b0d9f6a)).
+- Updated the Development Status ([056a912](https://github.com/jackton1/django-migration-resolver-hook/commit/056a9128f82c02c6e26078d950e272855e29b681)).
+- Updated the requirments.txt ([615f08e](https://github.com/jackton1/django-migration-resolver-hook/commit/615f08ef197c77cdc21c4b0865914957f325512e)).
+
+
 ## [v0.0.5](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.0.5) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.0.4...v0.0.5)) - 2020-01-24
 
 ### Misc
