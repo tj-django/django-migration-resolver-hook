@@ -18,6 +18,10 @@ Solution:
 This package aims to solve this problem by using a Doubly Linked List while traversing the app's 
 migration file(s) to store and detect duplicate node(s) and potential conflicts.
 
+When duplicate nodes are detected [`stat.st_mtime`](https://docs.python.org/2/library/stat.html#stat.ST_MTIME) is used to sort files based on the last modified time.
+
+:warning: This is not always accurate and might require a manual check to validate changes.
+
 > NOTE: This doesn't require Django's installed apps concept when using 
 *CLI commands* since this is totally file based and should be executed within
  the root/app folders.
@@ -167,4 +171,5 @@ TODO:
 - [ ] Add support for database unapply migration for case of applied migrations.
 - [ ] Add support to rollback any changes if there are failures in the chain of operation.
 - [ ] VCS support right now only git is supported (extend to mercurial).
+- [ ] Document Auto migration strategies.
 
