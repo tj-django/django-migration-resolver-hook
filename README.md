@@ -3,6 +3,25 @@
 Django Migration resolver ensures that migration files always stays ordered regardless of remote changes.
 
 
+Problem:
+
+With generated migration files using Django's `manage.py makemigrations` command you could run
+into issues where the changes or the generated migration files would potentially be out of sync with 
+remote's master/default branch most CI servers are able to catch this error by running a test based on
+your local branch merge back into the base branch there by spotting duplicate migration nodes.
+
+
+Solution:
+   
+This package aims to solve this problem by using a Doubly Linked List while traversing the app's 
+migration file(s) to store and detect duplicate node(s) and potential conflicts.
+
+> NOTE: This doesn't require Django's installed apps when using 
+*CLI commands* since this is totally file based and should be executed within
+ the root/app folders.
+
+
+
 ## Table of Contents
 
 1. [Installation](#installation)
@@ -57,6 +76,7 @@ poetry add -D django-migration-resolver-hook
 -----------------------------
 
 ### Using Auto migration resolver
+
 ---------------------------------
 #### CLI command: `auto_migration_resolver`
 
@@ -81,6 +101,7 @@ $ auto_migration_resolver --app-name my_app --commit --verbose
 
 -------------------------------
 ### Using Static migration resolver
+
 -------------------------------
 #### CLI command: `migration_resolver`
 
@@ -140,6 +161,7 @@ migrations you have locally.
 
 TODO:
 - [x] Auto detect and resolve errors with migration nodes.
+- [ ] Speed up execution using async/await for handling reading nodes.
 - [ ] Add support for database unapply migration for case of applied migrations.
 - [ ] Add support to rollback any changes if there are failures in the chain of operation.
 - [ ] VCS support right now only git is supported (extend to mercurial).
