@@ -1,8 +1,9 @@
 # [django-migration-resolver-hook](https://pypi.org/project/django-migration-resolver-hook/)
-Django Migration resolver ensures that nodes always stays ordered regardless of remote changes.
+
+Django Migration resolver ensures that migration files always stays ordered regardless of remote changes.
 
 
-### Table of Contents
+## Table of Contents
 
 1. [Installation](#installation)
 2. [Usage](#usage)
@@ -15,7 +16,7 @@ Django Migration resolver ensures that nodes always stays ordered regardless of 
 
 
 
-### Installation
+## Installation
 
 ```bash
 $ pip install django-migration-resolver-hook==0.0.5
@@ -43,7 +44,7 @@ setup(
 ```
 
 
-### Usage
+## Usage
 
 #### Use Case
 
