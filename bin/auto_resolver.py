@@ -187,7 +187,7 @@ class AutoResolver(object):
     def make_migration_node(self):
         migration_paths = sorted(
             self.migration_path.glob('*.py'),
-            key=lambda p: p.name.split('_')[0],
+            key=lambda p: (p.name.split('_')[0], -p.stat().st_mtime),
         )
         migration_node = MigrationNode()
         current_node = migration_node
