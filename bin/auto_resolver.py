@@ -223,6 +223,9 @@ class AutoResolver(object):
                     commit=self.commit,
                     verbose=self.verbose,
                 )
+                # TODO: Update the migration_node to include changes after reseeding.
+                # possibly update the node path/pointers to next and prev.
+                migration_node = self.make_migration_node()
             else:
                 # Sort by the last modified time
                 # Fix the migrations
@@ -231,7 +234,6 @@ class AutoResolver(object):
 
                 prev_stat = prev.current.stat()
                 node_stat = node.current.stat()
-                next_stat = next_.current.stat()
 
                 if prev_stat.st_mtime < node_stat.st_mtime:
                     last = prev
@@ -245,6 +247,7 @@ class AutoResolver(object):
                     commit=self.commit,
                     verbose=self.verbose,
                 )
+                migration_node = self.make_migration_node()
             resolver.fix()
 
 
