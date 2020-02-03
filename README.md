@@ -93,7 +93,7 @@ $ auto_migration_resolver --app-name my_app --commit --verbose
 ...
 ```
 
-
+-------------------------------
 ### Static migration resolver
 -------------------------------
 #### CLI command: `migration_resolver`
