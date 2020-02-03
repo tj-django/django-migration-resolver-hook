@@ -2,6 +2,16 @@
 Django Migration resolver ensures that nodes always stays ordered regardless of remote changes.
 
 
+### Table of Contents
+
+1. [Installation](#installation)
+2. [Usage](#usage)
+    i. [Scenario]()
+    ii. [Auto migration resolver]()
+    iii. [Static migration resolver]()
+
+
+
 ### Installation
 
 ```bash
@@ -54,13 +64,13 @@ setup(
        |---- 0008_auto_20200114_5438.py  # Only exists locally which raises duplicate migration nodes errors.
 ```
 
-#### Since this is now out of sync with the remote branch to sync changes:
+> Since this is now out of sync with the remote branch to sync changes:
 
 
 ##### Auto migration resolver
 -----------------------------
-CLI command: `auto_migration_resolver`
-======================================
+#### CLI command: `auto_migration_resolver`
+------------------------------------------
 Auto detect and fix migration files by providing the following:
 - `--app-name`: The app_name of the Django application.
 - `--strategy`: The strategy used to resolve migration errors (options: "reseed"/"inline"). (Defaults to: "reseed")
@@ -77,14 +87,15 @@ $ auto_migration_resolver --app-name my_app --commit --verbose
 ###### Output
 
 ```text
+...
 ```
 
 
 ##### Static migration resolver
 -------------------------------
 
-CLI command: `migration_resolver`
-=================================
+#### CLI command: `migration_resolver`
+--------------------------------------
 
 Fix migrations by providing the following: 
 - `--app-name`: The app_name of the Django application.
