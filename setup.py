@@ -66,10 +66,12 @@ setup(
     packages=find_namespace_packages(),
     entry_points = {
         'console_scripts': [
-              'migration_resolver = bin.resolver:main'
+              'migration_resolver = bin.resolver:main',
+              'auto_migration_resolver = bin.auto_resolver:main',
           ]
     },
     extras_require={
         'deploy': deploy_requires,
+        'development': ['pip-tools==4.4.1'],
     },
 )
