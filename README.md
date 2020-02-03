@@ -32,9 +32,9 @@ setup(
 
 ### Usage
 
-##### Scenario
+#### Scenario
 
-###### Remote
+##### Remote
 ```text
 |--- migrations
        |---- ...
@@ -45,7 +45,7 @@ setup(
 
 ```
 
-###### Local repo
+##### Local repo
 
 ```text
 |--- migrations
@@ -54,7 +54,46 @@ setup(
        |---- 0008_auto_20200114_5438.py  # Only exists locally which raises duplicate migration nodes errors.
 ```
 
-###### Since this is now out of sync with the remote branch to sync changes reseeding the migration run:
+#### Since this is now out of sync with the remote branch to sync changes:
+
+
+##### Auto migration resolver
+-----------------------------
+CLI command: `auto_migration_resolver`
+======================================
+Auto detect and fix migration files by providing the following:
+- `--app-name`: The app_name of the Django application.
+- `--strategy`: The strategy used to resolve migration errors (options: "reseed"/"inline"). (Defaults to: "reseed")
+- `--exclude`: The list of migration files that should be ignored.
+- `--commit`: Perform a `git commit` for the changes after moving file old -> new.
+- `--verbose`: Verbose command execution.
+
+##### Usage:
+
+```bash
+$ auto_migration_resolver --app-name my_app --commit --verbose
+```
+
+###### Output
+
+```text
+```
+
+
+##### Static migration resolver
+-------------------------------
+
+CLI command: `migration_resolver`
+=================================
+
+Fix migrations by providing the following: 
+- `--app-name`: The app_name of the Django application.
+- `--last`: Last migration file of the remote that should be the seed of the conflicted migrations with or without the suffix.
+- `--conflict`: The migration file which needs to be reseeded from the last migration file.
+- `--commit`: Perform a `git commit` for the changes after moving file old -> new.
+- `--verbose`: Verbose command execution.
+
+##### Usage:
 
 ```bash
 $ migration_resolver --app-name my_app --last 0010_auto_20200115_1632 --conflict 0008_auto_20200114_5438 --commit --verbose
@@ -102,8 +141,8 @@ migrations you have locally.
 
 
 TODO:
-- Auto detect and resolve errors with migration nodes.
-- Add support for database unapply migration for case of applied migrations.
-- Add support to rollback any changes if there are failures in the chain of operation.
-- VCS support right now only git is supported (extend to mercurial).
+- [x] Auto detect and resolve errors with migration nodes.
+- [ ] Add support for database unapply migration for case of applied migrations.
+- [ ] Add support to rollback any changes if there are failures in the chain of operation.
+- [ ] VCS support right now only git is supported (extend to mercurial).
 
