@@ -89,7 +89,7 @@ class Resolver(object):
 
     def fix(self):
         if self.conflict_path.is_file():
-            confilt_file = os.path.basename(str(self.conflict_path))
+            conflict_file = os.path.basename(str(self.conflict_path))
             new_resolved_file = os.path.basename(str(self.conflict_new_path))
             pwd = os.getcwd()
             os.chdir(self.base_path)
@@ -97,8 +97,7 @@ class Resolver(object):
 
             if self.verbose:
                 print(
-                    'Updating the conflicting migration file {}'.format(
-                        confilt_file)
+                    'Updating the conflicting migration file {}'.format(conflict_file),
                 )
             # Rename the file
             output = re.sub(
@@ -110,10 +109,10 @@ class Resolver(object):
             self.conflict_path.write_text(output)
 
             if self.verbose:
-                print('Successfully updated: {}.'.format(confilt_file))
+                print('Successfully updated: {}.'.format(conflict_file))
                 print(
                     'Renaming the migration file from {} to {}'
-                    .format(confilt_file, new_resolved_file)
+                    .format(conflict_file, new_resolved_file)
                 )
 
             # Calculate the new name
@@ -132,7 +131,7 @@ class Resolver(object):
                 migration_abs_path = str(self.migration_path).replace(
                     '{}/'.format(str(self.base_path)), '')
                 cf_abs = os.path.join(migration_abs_path, new_resolved_file)
-                ncf_abs = os.path.join(migration_abs_path, confilt_file)
+                ncf_abs = os.path.join(migration_abs_path, conflict_file)
 
                 run_command('git add {}'.format(cf_abs))
                 run_command('git add {}'.format(ncf_abs))
