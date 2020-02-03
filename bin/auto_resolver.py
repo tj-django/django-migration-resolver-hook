@@ -216,6 +216,16 @@ class AutoResolver(object):
 
         for node in migration_node.conflicts():
             if self.strategy == 'reseed':
+                # Sort by the last modified time
+                # Fix the migrations
+                prev = node.prev
+
+                prev_stat = prev.current.stat()
+                node_stat = node.current.stat()
+
+                if prev_stat.st_mtime > node_stat.st_mtime:
+                    node = prev
+
                 resolver = Resolver(
                     app_name=self.app_name,
                     last=migration_node.last.long_stem,
