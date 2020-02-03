@@ -10,9 +10,9 @@ Django Migration resolver ensures that migration files always stays ordered rega
     
     i. [Use Case](#use-case)
         
-    ii. [Auto migration resolver](#auto-migration-resolver)
+    ii. [Using Auto migration resolver](#using-auto-migration-resolver)
         
-    iii. [Static migration resolver](#static-migration-resolver)
+    iii. [Using Static migration resolver](#using-static-migration-resolver)
 
 
 
@@ -56,8 +56,8 @@ poetry add -D django-migration-resolver-hook
 > Since this is now out of sync with the remote branch to sync changes:
 -----------------------------
 
-### Auto migration resolver
------------------------------
+### Using Auto migration resolver
+---------------------------------
 #### CLI command: `auto_migration_resolver`
 
 Auto detect and fix migration files by providing the following:
@@ -80,7 +80,7 @@ $ auto_migration_resolver --app-name my_app --commit --verbose
 ```
 
 -------------------------------
-### Static migration resolver
+### Using Static migration resolver
 -------------------------------
 #### CLI command: `migration_resolver`
 
