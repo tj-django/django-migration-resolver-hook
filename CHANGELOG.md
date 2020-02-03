@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.1.1](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.1.1) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.1.0...v0.1.1))
+
+### Misc
+- "2020-02-03 13:44 - Increased django-migration-resolver-hook version: VERSION = (0, 1, 0) to VERSION = (0, 1, 1)" ([375a52b](https://github.com/jackton1/django-migration-resolver-hook/commit/375a52b5730c3d3ef90bf829ff4583953e5c0f54)).
+- Updated CHANGELOG.md. ([5d09334](https://github.com/jackton1/django-migration-resolver-hook/commit/5d09334af77daa60c0ec71435472346bce1af2cf)).
+- Updated the README.md ([20f8f51](https://github.com/jackton1/django-migration-resolver-hook/commit/20f8f51088a88cb7cf1a16942231fbf43b1f4a00)).
+- Updated the README.md. ([ee9859a](https://github.com/jackton1/django-migration-resolver-hook/commit/ee9859addb884af57f20c08954f85549bf12a539)).
+- Updated the README.md. ([99b3c80](https://github.com/jackton1/django-migration-resolver-hook/commit/99b3c80ce9473af0645d8216d64700b8e9bd5095)).
+
+
 ## [v0.1.0](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.1.0) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.0.5...v0.1.0)) - 2020-02-03
 
 ### Added
