@@ -18,7 +18,7 @@ Solution:
 This package aims to solve this problem by using a Doubly Linked List while traversing the app's 
 migration file(s) to store and detect duplicate node(s) and potential conflicts.
 
-> NOTE: This doesn't require Django's installed apps when using 
+> NOTE: This doesn't require Django's installed apps concept when using 
 *CLI commands* since this is totally file based and should be executed within
  the root/app folders.
 
