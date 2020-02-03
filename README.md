@@ -70,7 +70,7 @@ setup(
 > Since this is now out of sync with the remote branch to sync changes:
 
 
-##### Auto migration resolver
+### Auto migration resolver
 -----------------------------
 #### CLI command: `auto_migration_resolver`
 ------------------------------------------
@@ -94,7 +94,7 @@ $ auto_migration_resolver --app-name my_app --commit --verbose
 ```
 
 
-##### Static migration resolver
+### Static migration resolver
 -------------------------------
 
 #### CLI command: `migration_resolver`
