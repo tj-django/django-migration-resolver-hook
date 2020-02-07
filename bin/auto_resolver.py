@@ -223,7 +223,7 @@ class AutoResolver(object):
                 prev_stat = prev.current.stat()
                 node_stat = node.current.stat()
 
-                if prev_stat.st_mtime > node_stat.st_mtime:
+                if prev_stat.st_mtime < node_stat.st_mtime:
                     node = prev
 
                 resolver = Resolver(
