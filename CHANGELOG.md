@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [v0.1.4](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.1.4) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.1.3...v0.1.4))
+## [v0.1.4](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.1.4) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.1.3...v0.1.4)) - 2020-02-07
 
 ### Fixed
 - Fixed finding first node. ([386c42b](https://github.com/jackton1/django-migration-resolver-hook/commit/386c42bb0b143b3e5b0446d048b4ca9cac7fc628)).
@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Misc
 - "2020-02-07 14:36 - Increased django-migration-resolver-hook version: VERSION = (0, 1, 3) to VERSION = (0, 1, 4)" ([e4f0569](https://github.com/jackton1/django-migration-resolver-hook/commit/e4f0569917ff097e1f4c4dd19735095253ff38d9)).
 - Update README.md ([a305b4f](https://github.com/jackton1/django-migration-resolver-hook/commit/a305b4f16536a8972ca45a80ba729d92e3017e99)).
+- Updated CHANGELOG.md. ([f81487b](https://github.com/jackton1/django-migration-resolver-hook/commit/f81487b3742d4607bf62cd9e1166d0c1d8e63d99)).
 - Updated CHANGELOG.md. ([a880363](https://github.com/jackton1/django-migration-resolver-hook/commit/a880363850383e08805b7c354e920bfb55a978ae)).
 - Updated to use prev < node ([0a2fd11](https://github.com/jackton1/django-migration-resolver-hook/commit/0a2fd1134542788f3b449d1eaf5dde9858d59e03)).
 
