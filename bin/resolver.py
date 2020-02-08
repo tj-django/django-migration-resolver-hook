@@ -46,7 +46,7 @@ class Resolver(object):
         self.base_path = pathlib.Path(os.path.join(base_dir))
         self.migration_path = pathlib.Path(os.path.join(migration_dir))
         self.replace_regex = re.compile(
-            "\('{app_name}',\s'(?P<conflict_migration>.*)'\)"
+            "\('{app_name}',\s'(?P<conflict_migration>.*)'\),"
             .format(app_name=self.app_name),
             re.I | re.M,
         )

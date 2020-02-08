@@ -1,5 +1,6 @@
 import argparse
 import inspect
+import operator
 import os
 import pathlib
 from typing import Optional, Generator
@@ -150,7 +151,15 @@ class MigrationNode(object):
 class AutoResolver(object):
     INITIAL_RE = re.compile('.*initial\s+=\s+True')
 
-    def __init__(self, app_name, commit=False, verbose=False, exclude=None, strategy=None):
+    def __init__(
+        self,
+        app_name,
+        commit=False,
+        verbose=False,
+        exclude=None,
+        strategy=None,
+        mtime_gt=False,
+    ):
         self.app_name = app_name
         self.commit = commit
         self.verbose = verbose
@@ -162,16 +171,14 @@ class AutoResolver(object):
         self.app_module = import_module(app_name)
         self.migration_module = import_module('%s.%s' % (app_name, 'migrations'))
 
+        self.mtime_gt = mtime_gt
+
         base_dir = os.path.dirname(os.path.dirname(inspect.getfile(self.app_module)))
         migration_dir = os.path.dirname(inspect.getfile(self.migration_module))
 
         self.base_path = pathlib.Path(os.path.join(base_dir))
         self.migration_path = pathlib.Path(os.path.join(migration_dir))
-        self.replace_regex = re.compile(
-            "\('{app_name}',\s'(?P<conflict_migration>.*)'\)"
-            .format(app_name=self.app_name),
-            re.I | re.M,
-        )
+
         if exclude:
             for path in exclude + self.base_exclude:
                 excluded_path = list(
@@ -215,6 +222,8 @@ class AutoResolver(object):
         migration_node = self.make_migration_node()
 
         for node in migration_node.conflicts():
+            comparator = operator.lt if not self.mtime_gt else operator.gt
+
             if self.strategy == 'reseed':
                 # Sort by the last modified time
                 # Fix the migrations
@@ -223,7 +232,7 @@ class AutoResolver(object):
                 prev_stat = prev.current.stat()
                 node_stat = node.current.stat()
 
-                if prev_stat.st_mtime < node_stat.st_mtime:
+                if comparator(prev_stat.st_mtime, node_stat.st_mtime):
                     node = prev
 
                 resolver = Resolver(
@@ -240,12 +249,11 @@ class AutoResolver(object):
                 # Sort by the last modified time
                 # Fix the migrations
                 prev = node.prev
-                next_ = node.next
 
                 prev_stat = prev.current.stat()
                 node_stat = node.current.stat()
 
-                if prev_stat.st_mtime < node_stat.st_mtime:
+                if comparator(prev_stat.st_mtime, node_stat.st_mtime):
                     last = prev
                 else:
                     node, last = prev, node
@@ -290,6 +298,11 @@ def parse_args(args=None):
         help='The glob/full name of the excluded migration file(s).'
     )
     parser.add_argument(
+        '--mtime-gt',
+        action='store_true',
+        help='Use mtime greater than',
+    )
+    parser.add_argument(
         '--commit',
         action='store_true',
         help='Commit the changes made.'
@@ -306,6 +319,7 @@ def main(args=None):
         verbose=args.verbose,
         exclude=args.exclude,
         strategy=args.strategy,
+        mtime_gt=args.mtime_gt,
     )
     resolver.fix()
 
