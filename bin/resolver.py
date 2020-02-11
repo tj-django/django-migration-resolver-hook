@@ -70,7 +70,7 @@ class Resolver(object):
         )[0]
 
         self.replacement = (
-            "('{app_name}', '{prev_migration}')"
+            "('{app_name}', '{prev_migration}'),"
             .format(
                 app_name=self.app_name,
                 prev_migration=self.last_path.name.strip(self.last_path.suffix),
