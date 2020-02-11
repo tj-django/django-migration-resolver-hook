@@ -81,6 +81,8 @@ poetry add -D django-migration-resolver-hook
 > Since this is now out of sync with the remote branch to sync changes:
 -----------------------------
 
+:warning: Unstable use [Static migration resolver](#using-static-migration-resolver) instead.
+
 ### Using Auto migration resolver
 
 ---------------------------------
