@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.1.6](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.1.6) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.1.5...v0.1.6))
+
+### Fixed
+- Fixed bug with the excluding the extra comma. ([474e638](https://github.com/jackton1/django-migration-resolver-hook/commit/474e6381239e9a0a08e8dbc6516ea7b06bfb86d4)).
+
+### Misc
+- "2020-02-11 14:33 - Increased django-migration-resolver-hook version: VERSION = (0, 1, 5) to VERSION = (0, 1, 6)" ([d84d8d7](https://github.com/jackton1/django-migration-resolver-hook/commit/d84d8d713c11dd97c65abfdca5c527f794bb7c1c)).
+- Updated CHANGELOG.md. ([58ee89c](https://github.com/jackton1/django-migration-resolver-hook/commit/58ee89c77fbfba98f055cd72dfdc02bc0e688a40)).
+
+
 ## [v0.1.5](https://github.com/jackton1/django-migration-resolver-hook/releases/tag/v0.1.5) ([compare](https://github.com/jackton1/django-migration-resolver-hook/compare/v0.1.4...v0.1.5)) - 2020-02-08
 
 ### Misc
