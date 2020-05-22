@@ -16,7 +16,7 @@ your local branch merge back into the base branch there by spotting duplicate mi
 Solution:
    
 This package aims to solve this problem by using a Doubly Linked List while traversing the app's 
-migration file(s) to store and detect duplicate node(s) and potential conflicts.
+migration file(s) detecting duplicate node(s) and potential conflicts.
 
 When duplicate nodes are detected [`stat.st_mtime`](https://docs.python.org/2/library/stat.html#stat.ST_MTIME) is used to sort files based on the last modified time.
 
