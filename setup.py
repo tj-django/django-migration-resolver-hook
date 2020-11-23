@@ -72,6 +72,6 @@ setup(
     },
     extras_require={
         'deploy': deploy_requires,
-        'development': ['pip-tools==4.5.1'],
+        'development': ['pip-tools==5.4.0'],
     },
 )
