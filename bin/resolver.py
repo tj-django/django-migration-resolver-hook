@@ -14,7 +14,7 @@ def run_command(command):
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
 
     try:
-        outs, errs = process.communicate(timeout=30)
+        outs, errs = process.communicate(timeout=120)
         if outs:
             print(outs.decode('utf8').strip(), file=sys.stdout)
         if errs:
