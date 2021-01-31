@@ -49,6 +49,10 @@ install-dev: clean-build  ## Install development extra dependencies.
 	@echo "Installing development requirements..."
 	@$(PYTHON_PIP) install -e .'[development]' -r requirements.txt
 
+install-deploy: clean-build  ## Install deploy extra dependencies.
+	@echo "Installing deploy requirements..."
+	@$(PYTHON_PIP) install -e .'[deploy]' -r requirements.txt
+
 update-requirements:  ## Updates the requirement.txt adding missing package dependencies
 	@echo "Syncing the package requirements.txt..."
 	@$(PIP_COMPILE)
