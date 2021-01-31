@@ -25,7 +25,6 @@ guard-%: ## Checks that env var is set else exits with non 0 mainly used in CI;
 
 clean-build: ## Clean project build artifacts.
 	@echo "Removing build assets..."
-	@$(PYTHON) setup.py clean
 	@rm -rf build/
 	@rm -rf dist/
 	@rm -rf *.egg-info
