@@ -25,7 +25,6 @@ guard-%: ## Checks that env var is set else exits with non 0 mainly used in CI;
 
 clean-build: ## Clean project build artifacts.
 	@echo "Removing build assets..."
-	@$(PYTHON) setup.py clean
 	@rm -rf build/
 	@rm -rf dist/
 	@rm -rf *.egg-info
@@ -49,6 +48,10 @@ install-test: clean-build clean-test-all ## Install test extra dependencies.
 install-dev: clean-build  ## Install development extra dependencies.
 	@echo "Installing development requirements..."
 	@$(PYTHON_PIP) install -e .'[development]' -r requirements.txt
+
+install-deploy: clean-build  ## Install deploy extra dependencies.
+	@echo "Installing deploy requirements..."
+	@$(PYTHON_PIP) install -e .'[deploy]' -r requirements.txt
 
 update-requirements:  ## Updates the requirement.txt adding missing package dependencies
 	@echo "Syncing the package requirements.txt..."

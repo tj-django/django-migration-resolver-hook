@@ -6,7 +6,6 @@ from setuptools import setup, find_namespace_packages
 deploy_requires = [
     'bump2version==1.0.1',
     'readme_renderer[md]',
-    'changes==0.7.0',
     'git-changelog==0.4.2',
     'twine==3.3.0',
 ]
