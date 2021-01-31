@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [v0.2.0](https://github.com/tj-django/django-migration-resolver-hook/releases/tag/v0.2.0) - 2021-01-31
+## [v0.1.7](https://github.com/tj-django/django-migration-resolver-hook/releases/tag/v0.1.7) - 2021-01-31
 
-<small>[Compare with v0.1.6](https://github.com/tj-django/django-migration-resolver-hook/compare/v0.1.6...v0.2.0)</small>
+<small>[Compare with v0.1.6](https://github.com/tj-django/django-migration-resolver-hook/compare/v0.1.6...v0.1.7)</small>
 
 ### Added
 - Add renovate.json ([2e9c545](https://github.com/tj-django/django-migration-resolver-hook/commit/2e9c54587d4bfcf4e2eb072ec67907756676f96f) by Renovate Bot).
