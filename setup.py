@@ -4,11 +4,11 @@ import os
 from setuptools import setup, find_namespace_packages
 
 deploy_requires = [
-    'bump2version==0.5.11',
+    'bump2version==1.0.1',
     'readme_renderer[md]',
     'changes==0.7.0',
-    'git-changelog==0.1.0',
-    'twine==1.15.0',
+    'git-changelog==0.4.2',
+    'twine==3.3.0',
 ]
 
 
@@ -72,6 +72,6 @@ setup(
     },
     extras_require={
         'deploy': deploy_requires,
-        'development': ['pip-tools==4.5.1'],
+        'development': ['pip-tools==5.5.0'],
     },
 )
