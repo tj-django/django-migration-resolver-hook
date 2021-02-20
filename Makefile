@@ -60,10 +60,11 @@ tag-build:
 	@git tag v$(shell $(PYTHON) setup.py --version)
 	@git push --tags
 
-release-to-pypi: increase-version tag-build  ## Release project to pypi
+release-to-pypi: increase-version  ## Release project to pypi
 	@$(PYTHON_PIP) install -U twine
 	@$(PYTHON) setup.py sdist bdist_wheel
 	@twine upload dist/*  --verbose
+	@$(MAKE) tag-build
 
 
 # ----------------------------------------------------------
