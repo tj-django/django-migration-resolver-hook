@@ -22,7 +22,6 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
           commit-message: Update CHANGELOG
-          committer: github-actions[bot]
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           branch: chore/update-changelog
           delete-branch: true
