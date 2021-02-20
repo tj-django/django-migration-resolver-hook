@@ -2,13 +2,12 @@
 
 .DEFAULT_GOAL := help
 
-PYTHON 			:= /usr/bin/env python
-PYTHON_VERSION  := $(PYTHON) --version
-MANAGE_PY 		:= $(PYTHON) manage.py
-PYTHON_PIP  	:= /usr/bin/env pip
-PIP_COMPILE 	:= /usr/bin/env pip-compile
-PART 			:= patch
-PACKAGE_VERSION = $(shell $(PYTHON) setup.py --version)
+PYTHON 		    := /usr/bin/env python
+PYTHON_VERSION      := $(PYTHON) --version
+MANAGE_PY 	    := $(PYTHON) manage.py
+PYTHON_PIP  	    := /usr/bin/env pip
+PIP_COMPILE 	    := /usr/bin/env pip-compile
+PART 		    := patch
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -58,12 +57,8 @@ update-requirements:  ## Updates the requirement.txt adding missing package depe
 	@$(PIP_COMPILE)
 
 tag-build:
-	@git tag v$(PACKAGE_VERSION)
-	@git-changelog . > CHANGELOG.md
-	@git add .
-	@git commit -am "Updated CHANGELOG.md."
+	@git tag v$(shell $(PYTHON) setup.py --version)
 	@git push --tags
-	@git push
 
 release-to-pypi: increase-version tag-build  ## Release project to pypi
 	@$(PYTHON_PIP) install -U twine
@@ -78,10 +73,6 @@ increase-version: clean-build guard-PART  ## Bump the project version (using the
 	@echo "Increasing project '$(PART)' version..."
 	@$(PYTHON_PIP) install -q -e .'[deploy]'
 	@bumpversion --verbose $(PART)
-	@git-changelog . > CHANGELOG.md
-	@git add .
-	@git commit -am "Updated CHANGELOG.md."
-	@git push --tags
 	@git push
 
 # ----------------------------------------------------------
