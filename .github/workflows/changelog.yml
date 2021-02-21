@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Generate changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.2
+        uses: tj-actions/github-changelog-generator@v1
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
