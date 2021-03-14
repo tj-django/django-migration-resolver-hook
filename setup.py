@@ -70,6 +70,6 @@ setup(
     },
     extras_require={
         'deploy': deploy_requires,
-        'development': ['pip-tools==5.5.0'],
+        'development': ['pip-tools==6.0.0'],
     },
 )
