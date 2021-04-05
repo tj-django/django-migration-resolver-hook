@@ -54,8 +54,9 @@ class Resolver(object):
         seed = self.last.split('_')[0]  # 0537_auto_20200115_1632.py -> 0537
 
         if str(seed).isdigit():
-            next_ = next(count(int(seed) + 1))  # 0537 -> 537
-            if not str(next_).startswith('0'):
+            next_ = next(count(int(seed) + 1))  # 0537 -> 538
+
+            if not str(next_).startswith('0') and len(str(next_)) < 4:
                 next_ = '0{next_}'.format(next_=next_)  # 0537
 
         else:
