@@ -12,7 +12,7 @@ Problem:
 
 With generated migration files using Django's `manage.py makemigrations` command you could run
 into issues where the generated migration files would potentially be out of sync with 
-remote's master/default branch most CI servers are able to catch this error by running a test based on
+remote's default branch most CI servers are able to catch this error by running a test based on
 your local branch merge back into the base branch there by spotting duplicate migration nodes.
 
 
