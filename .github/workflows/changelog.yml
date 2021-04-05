@@ -1,8 +1,7 @@
 name: Update CHANGELOG
 on:
-  create:
-    tags:
-      - '*'
+  release:
+    types: [published]
 
 jobs:
   changelog:
