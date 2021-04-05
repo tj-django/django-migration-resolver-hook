@@ -58,6 +58,8 @@ class Resolver(object):
 
             if not str(next_).startswith('0') and len(str(next_)) < 4:
                 next_ = '0{next_}'.format(next_=next_)  # 0537
+            else:
+                next_ = str(next_)
 
         else:
             raise NotImplementedError
