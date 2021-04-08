@@ -3,20 +3,15 @@ name: Create New Release
 on:
   push:
     tags:
-      - 'v*'
+      - '*'
 
 jobs:
   build:
-    name: Create New Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-#       - name: Generate Changelog. TODO: Generate a changelog from current tag -> new tag
-#         run: echo "# Good things have arrived" > ${{ github.workflow }}-CHANGELOG.txt
-      - name: Release
+      - name: Create Release
         uses: softprops/action-gh-release@v1
-#         with:
-#           body_path: ${{ github.workflow }}-CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
