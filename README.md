@@ -2,13 +2,13 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/tj-django/django-migration-resolver-hook.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tj-django/django-migration-resolver-hook/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/tj-django/django-migration-resolver-hook.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tj-django/django-migration-resolver-hook/context:python)
 
-
 # [django-migration-resolver-hook](https://pypi.org/project/django-migration-resolver-hook/)
 
-Django Migration resolver ensures that migration files always stays ordered regardless of remote changes.
+
+#### Ensures that migration files always stays ordered regardless of remote changes.
 
 
-Problem:
+### Problem:
 
 With generated migration files using Django's `manage.py makemigrations` command you could run
 into issues where the generated migration files would potentially be out of sync with 
@@ -16,7 +16,7 @@ remote's default branch most CI servers are able to catch this error by running 
 your local branch merge back into the base branch there by spotting duplicate migration nodes.
 
 
-Solution:
+### Solution:
    
 This package aims to solve this problem by using a Doubly Linked List while traversing the app's 
 migration file(s) detecting duplicate node(s) and potential conflicts.
