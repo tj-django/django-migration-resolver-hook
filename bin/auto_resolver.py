@@ -24,7 +24,9 @@ class MigrationNode(object):
     @next.setter
     def next(self, next):
         if next and not isinstance(next, MigrationNode):
-            raise ValueError('Expected {}: provided {}'.format(type(self).__name__, repr(next)))
+            raise ValueError(
+                "Expected {}: provided {}".format(type(self).__name__, repr(next))
+            )
         self._next = next
 
     @property
@@ -35,7 +37,9 @@ class MigrationNode(object):
     @prev.setter
     def prev(self, prev):
         if prev and not isinstance(prev, MigrationNode):
-            raise ValueError('Expected {}: provided {}'.format(type(self).__name__, repr(prev)))
+            raise ValueError(
+                "Expected {}: provided {}".format(type(self).__name__, repr(prev))
+            )
         self._prev = prev
 
     @property
@@ -50,12 +54,14 @@ class MigrationNode(object):
     @property
     def short_stem(self):
         if self.long_stem:
-            return self.long_stem.split('_')[0]
+            return self.long_stem.split("_")[0]
 
     @current.setter
     def current(self, current):
         if not isinstance(current, pathlib.Path):
-            raise ValueError('Expected {}: provided {}'.format(pathlib.Path.__name__, repr(current)))
+            raise ValueError(
+                "Expected {}: provided {}".format(pathlib.Path.__name__, repr(current))
+            )
         self._current = current
 
     @classmethod
@@ -67,23 +73,17 @@ class MigrationNode(object):
         return node
 
     def __str__(self):
-        title = ''
+        title = ""
         if self.prev:
-            title = (
-                '{prev_pathname} → '.format(prev_pathname=self.prev.current.name)
-            )
+            title = "{prev_pathname} → ".format(prev_pathname=self.prev.current.name)
         if self.current:
-            title += (
-                '{current_pathname}'.format(current_pathname=self.current.name)
-            )
+            title += "{current_pathname}".format(current_pathname=self.current.name)
         if self.next:
-            title += (
-                ' → {next_pathname}'.format(next_pathname=self.next.current.name)
-            )
+            title += " → {next_pathname}".format(next_pathname=self.next.current.name)
         return title
 
     def __repr__(self):
-        return '<{}:{}>'.format(self.__class__, str(self))
+        return "<{}:{}>".format(self.__class__, str(self))
 
     def walk(self):
         yield self
@@ -110,10 +110,10 @@ class MigrationNode(object):
 
     def node_exists(self, path):
         # type: (pathlib.Path) -> bool
-        stem = path.stem.split('_')[0]
+        stem = path.stem.split("_")[0]
         found = False
 
-        if self.current.stem.split('_')[0] == stem:
+        if self.current.stem.split("_")[0] == stem:
             return True
 
         next_ = self.next
@@ -121,7 +121,7 @@ class MigrationNode(object):
         while next_:
             next_stem = next_.current.stem
 
-            if next_stem.split('_')[0] == stem:
+            if next_stem.split("_")[0] == stem:
                 found = True
                 break
             else:
@@ -149,7 +149,7 @@ class MigrationNode(object):
 
 
 class AutoResolver(object):
-    INITIAL_RE = re.compile('.*initial\s+=\s+True')
+    INITIAL_RE = re.compile(".*initial\s+=\s+True")
 
     def __init__(
         self,
@@ -164,12 +164,12 @@ class AutoResolver(object):
         self.commit = commit
         self.verbose = verbose
         self.strategy = strategy
-        self.base_exclude = ['__init__']
+        self.base_exclude = ["__init__"]
         self.exclude = []
         self.excluded_paths = []
 
         self.app_module = import_module(app_name)
-        self.migration_module = import_module('%s.%s' % (app_name, 'migrations'))
+        self.migration_module = import_module("%s.%s" % (app_name, "migrations"))
 
         self.mtime_gt = mtime_gt
 
@@ -182,10 +182,10 @@ class AutoResolver(object):
         if exclude:
             for path in exclude + self.base_exclude:
                 excluded_path = list(
-                    self.migration_path.glob('*{exclude}*'.format(exclude=path))
+                    self.migration_path.glob("*{exclude}*".format(exclude=path))
                 )
                 if len(excluded_path) > 1:
-                    raise ValueError('Found more than one path for {}'.format(path))
+                    raise ValueError("Found more than one path for {}".format(path))
                 else:
                     excluded_path = excluded_path[0]
                     self.exclude.append(excluded_path.stem)
@@ -193,8 +193,8 @@ class AutoResolver(object):
 
     def make_migration_node(self):
         migration_paths = sorted(
-            self.migration_path.glob('*.py'),
-            key=lambda p: (p.name.split('_')[0], -p.stat().st_mtime),
+            self.migration_path.glob("*.py"),
+            key=lambda p: (p.name.split("_")[0], -p.stat().st_mtime),
         )
         migration_node = MigrationNode()
         current_node = migration_node
@@ -224,7 +224,7 @@ class AutoResolver(object):
         for node in migration_node.conflicts():
             comparator = operator.lt if not self.mtime_gt else operator.gt
 
-            if self.strategy == 'reseed':
+            if self.strategy == "reseed":
                 # Sort by the last modified time
                 # Fix the migrations
                 prev = node.prev
@@ -271,41 +271,35 @@ class AutoResolver(object):
 
 def parse_args(args=None):
     parser = argparse.ArgumentParser(
-        description='Auto Fix vcs errors with duplicate migration nodes.'
+        description="Auto Fix vcs errors with duplicate migration nodes."
     )
+    parser.add_argument("--verbose", help="Verbose output", action="store_true")
     parser.add_argument(
-        '--verbose',
-        help='Verbose output',
-        action='store_true'
-    )
-    parser.add_argument(
-        '--app-name',
+        "--app-name",
         type=str,
-        help='App Name',
+        help="App Name",
         required=True,
     )
     parser.add_argument(
-        '--strategy',
+        "--strategy",
         type=str,
-        choices=('reseed', 'inline'),
-        default='reseed',
+        choices=("reseed", "inline"),
+        default="reseed",
     )
     parser.add_argument(
-        '--exclude',
+        "--exclude",
         type=str,
-        nargs='+',
+        nargs="+",
         required=False,
-        help='The glob/full name of the excluded migration file(s).'
+        help="The glob/full name of the excluded migration file(s).",
     )
     parser.add_argument(
-        '--mtime-gt',
-        action='store_true',
-        help='Use mtime greater than',
+        "--mtime-gt",
+        action="store_true",
+        help="Use mtime greater than",
     )
     parser.add_argument(
-        '--commit',
-        action='store_true',
-        help='Commit the changes made.'
+        "--commit", action="store_true", help="Commit the changes made."
     )
 
     return parser.parse_args()
@@ -324,5 +318,5 @@ def main(args=None):
     resolver.fix()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
