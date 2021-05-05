@@ -5,12 +5,3 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: pip-tools
-    versions:
-    - 6.0.0
-    - 6.0.1
-    - 6.1.0
-  - dependency-name: twine
-    versions:
-    - 3.4.0
