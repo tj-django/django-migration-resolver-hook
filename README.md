@@ -1,3 +1,6 @@
+## ⚠️ &nbsp; This project is no longer maitained and has been moved to [django-migration-fixer](https://github.com/tj-django/django-migration-fixer)
+
+
 [![PyPI version](https://badge.fury.io/py/django-migration-resolver-hook.svg)](https://badge.fury.io/py/django-migration-resolver-hook)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/tj-django/django-migration-resolver-hook.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tj-django/django-migration-resolver-hook/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/tj-django/django-migration-resolver-hook.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tj-django/django-migration-resolver-hook/context:python)
